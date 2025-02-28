@@ -1,5 +1,8 @@
+—-
 layout: page
 title: “Life Itself”
-permalink:/LifeItself
+permalink: /lifeitself/
+—-
+
 
 test test test
