@@ -33,6 +33,10 @@ github_username:  fuzzybydesign
 theme: modernist
 plugins:
   - jekyll-feed
+  
+markdown: redcarpet
+  redcarpet: 
+    extensions: ['smart']
 
 # Exclude from processing.
 # The following items will not be processed, by default.
