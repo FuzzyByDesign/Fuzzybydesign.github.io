@@ -1,6 +1,0 @@
-***TO DO LIST***
-
-- Fish King Comic image size changes based on window width. Get's too small when full page. Why? Div problem?
-- Update Fish King splash thumbnail
-- About me page
-- Add logo?
