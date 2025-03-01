@@ -1,7 +1,8 @@
 ---
 layout: single
+classes: wide
 title: The Fish King
-permalink: /TheFishKing/1-6
+permalink: /TheFishKing/last
 ---
 <div style="text-align:center">
     <a href="/TheFishKing/" style="text-decoration:none">
@@ -10,7 +11,7 @@ permalink: /TheFishKing/1-6
     <a href="/TheFishKing/1-5" style="text-decoration:none">
         <img style="height:28px; text-align:left; margin-left:1%; margin-right:10%" src="/assets/Misc/prev.jpg" alt="Previous">
     </a>
-    <u><b>Quest 1-6</b></u>
+    <font size="6"><u><b>Quest 1-6</b></u></font>
     <a href="/TheFishKing/1-7" style="text-decoration:none">
         <img style="height:28px; text-align:right; margin-left:10%; margin-right:1%" src="/assets/Misc/next.jpg" alt="Next">
     </a>
