@@ -5,3 +5,4 @@
 - About me page
 - Add logo?
 - Combine all fish king markdown files into just 1 for simplicity somehow?
+- why dark theme not work on regular single pages?

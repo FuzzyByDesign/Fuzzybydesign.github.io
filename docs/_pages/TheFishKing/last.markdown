@@ -6,17 +6,17 @@ permalink: /TheFishKing/last
 ---
 <div style="text-align:center">
     <a href="/TheFishKing/" style="text-decoration:none">
-        <img style="height:28px; text-align:left; margin:1%" src="/assets/Misc/first.jpg" alt="First">
+        <img style="height:28px; text-align:left; margin:1%" src="/assets/Misc/first.PNG" alt="First">
     </a>
     <a href="/TheFishKing/1-5" style="text-decoration:none">
-        <img style="height:28px; text-align:left; margin-left:1%; margin-right:10%" src="/assets/Misc/prev.jpg" alt="Previous">
+        <img style="height:28px; text-align:left; margin-left:1%; margin-right:10%" src="/assets/Misc/prev.PNG" alt="Previous">
     </a>
-    <font size="6"><u><b>Quest 1-6</b></u></font>
+    <font size="5"><u><b>Quest 1-6</b></u></font>
     <a href="/TheFishKing/1-7" style="text-decoration:none">
-        <img style="height:28px; text-align:right; margin-left:10%; margin-right:1%" src="/assets/Misc/next.jpg" alt="Next">
+        <img style="height:28px; text-align:right; margin-left:10%; margin-right:1%" src="/assets/Misc/next.PNG" alt="Next">
     </a>
     <a href="/TheFishKing/last" style="text-decoration:none">
-        <img style="height:28px; text-align:right; margin:1%" src="/assets/Misc/last.jpg" alt="Last">
+        <img style="height:28px; text-align:right; margin:1%" src="/assets/Misc/last.PNG" alt="Last">
     </a>
 </div>
 
@@ -26,15 +26,15 @@ permalink: /TheFishKing/last
 
 <div style="text-align:center">
     <a href="/TheFishKing/" style="text-decoration:none">
-        <img style="height:28px; text-align:left; margin:1%" src="/assets/Misc/first.jpg" alt="First">
+        <img style="height:28px; text-align:left; margin:1%" src="/assets/Misc/first.PNG" alt="First">
     </a>
     <a href="/TheFishKing/1-5" style="text-decoration:none">
-        <img style="height:28px; text-align:left; margin-left:1%; margin-right:10%" src="/assets/Misc/prev.jpg" alt="Previous">
+        <img style="height:28px; text-align:left; margin-left:1%; margin-right:10%" src="/assets/Misc/prev.PNG" alt="Previous">
     </a>
     <a href="/TheFishKing/last" style="text-decoration:none">
-        <img style="height:28px; text-align:right; margin-left:10%; margin-right:1%" src="/assets/Misc/next.jpg" alt="Next">
+        <img style="height:28px; text-align:right; margin-left:10%; margin-right:1%" src="/assets/Misc/next.PNG" alt="Next">
     </a>
     <a href="/TheFishKing/last" style="text-decoration:none">
-        <img style="height:28px; text-align:right; margin:1%" src="/assets/Misc/last.jpg" alt="Last">
+        <img style="height:28px; text-align:right; margin:1%" src="/assets/Misc/last.PNG" alt="Last">
     </a>
 </div>
