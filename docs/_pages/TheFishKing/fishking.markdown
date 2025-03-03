@@ -63,7 +63,7 @@ permalink: /TheFishKing/
 
 <div style="text-align:left">
     <a href="/TheFishKing/1-6" style="text_decoration:none">
-        <img style="height:100px; text-align:left; margin:1%" src="/assets/TheFishKing/6_thumb.PNG">
+        <img style="height:100px; text-align:left; margin:1%" src="/assets/TheFishKing/6_thumb.png">
     </a>
     <a href="/TheFishKing/1-6">
         <font size="5"><b>Quest 1.6</b></font>
