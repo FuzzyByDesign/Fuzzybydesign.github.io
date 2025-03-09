@@ -2,7 +2,7 @@
 layout: single
 classes: wide
 permalink: /TheFishKing/titlepage
-
+comments: true
 ---
 <div style="text-align:center">
     <a href="/TheFishKing/" style="text-decoration:none; color:inherit">
@@ -34,3 +34,6 @@ permalink: /TheFishKing/titlepage
 </div>
 
 <h3> Author's Notes:</h3>
+Hi and welcome to the first issue of The Fish King! Hope you enjoy reading this as much as I'm enjoying making it!
+
+-- Fuzzy

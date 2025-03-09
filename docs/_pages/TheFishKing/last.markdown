@@ -16,12 +16,8 @@ permalink: /TheFishKing/last
         <img style="height:28px; text-align:left; margin-left:1%; margin-right:10%" src="/assets/Misc/prev.PNG" alt="Previous">
     </a>
     <font size="5"><b>Quest 1.7</b></font>
-    <a href="/TheFishKing/1-8" style="text-decoration:none">
-        <img style="height:28px; text-align:right; margin-left:10%; margin-right:1%" src="/assets/Misc/next.PNG" alt="Next">
-    </a>
-    <a href="/TheFishKing/last" style="text-decoration:none">
-        <img style="height:28px; text-align:right; margin:1%" src="/assets/Misc/last.PNG" alt="Last">
-    </a>
+    <img style="height:28px; text-align:right; margin-left:10%; margin-right:1%" src="/assets/Misc/next.PNG" alt="Next">
+    <img style="height:28px; text-align:right; margin:1%" src="/assets/Misc/last.PNG" alt="Last">
 </div>
 
 <div style="text-align:center; padding-top:20px;padding-bottom:20px">
@@ -35,12 +31,11 @@ permalink: /TheFishKing/last
     <a href="/TheFishKing/1-6" style="text-decoration:none">
         <img style="height:28px; text-align:left; margin-left:1%; margin-right:10%" src="/assets/Misc/prev.PNG" alt="Previous">
     </a>
-    <a href="/TheFishKing/last" style="text-decoration:none">
-        <img style="height:28px; text-align:right; margin-left:10%; margin-right:1%" src="/assets/Misc/next.PNG" alt="Next">
-    </a>
-    <a href="/TheFishKing/last" style="text-decoration:none">
-        <img style="height:28px; text-align:right; margin:1%" src="/assets/Misc/last.PNG" alt="Last">
-    </a>
+    <img style="height:28px; text-align:right; margin-left:10%; margin-right:1%" src="/assets/Misc/next.PNG" alt="Next">
+    <img style="height:28px; text-align:right; margin:1%" src="/assets/Misc/last.PNG" alt="Last">
 </div>
 
 <h3> Author's Notes:</h3>
+Shoutout to all the Arthuriana/Shakespeare nerds out there! I hope all 5 of you appreciate the
+reference to King Arthur originally being Roman here. 
+

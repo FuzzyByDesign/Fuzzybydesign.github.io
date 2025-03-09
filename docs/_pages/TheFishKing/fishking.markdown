@@ -69,12 +69,12 @@ header:
     </a>
 </div>
 
-
-<div style=“text-align:left”>
-    <a href=“/TheFishKing/1-7” style=“text_decoration:none”>
-        <img style=“height:100px; text-align:left; margin:1%” src=“/assets/TheFishKing/7_thumb.jpg”>
+<div style="text-align:left">
+    <a href="/TheFishKing/1-7" style="text_decoration:none">
+        <img style="height:100px; text-align:left; margin:1%" src="/assets/TheFishKing/7_thumb.jpg">
     </a>
-    <a href=“/TheFishKing/1-7”>
-        <font size=“5”><b>Quest 1.7</b></font>
+    <a href="/TheFishKing/1-7">
+        <font size="5"><b>Quest 1.7</b></font>
     </a>
 </div>
+
