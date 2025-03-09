@@ -2,10 +2,9 @@
 layout: single
 classes: wide
 permalink: /TheFishKing/
+header:
+  image: /assets/TheFishKing/banner_text.PNG
 ---
-<div style="text-align:center; padding-top:20px;padding-bottom:20px">
-    <img style="width:1200px" src="/assets/TheFishKing/banner_text.PNG" alt="The Fish King">
-</div>
 
 <div style="text-align:left">
     <a href="/TheFishKing/titlepage" style="text_decoration:none">

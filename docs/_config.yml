@@ -17,7 +17,7 @@ minimal_mistakes_skin    : "default" #"default" # "air", "aqua", "contrast", "da
 # Site Settings
 locale                   : "en-US"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
-title                    : "Fuzzy By Design | Comics, Art, Bread"
+title                    : "Steve Tran | Comics"
 title_separator          : ""
 subtitle                 : "" # site tagline that appears below site title in masthead
 name                     : "Steve Tran"
@@ -164,7 +164,6 @@ footer:
 
 
 # Reading Files
-#include: ["_pages"]
 include:
   - .htaccess
   - _pages
