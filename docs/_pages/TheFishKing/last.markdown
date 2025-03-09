@@ -37,5 +37,5 @@ permalink: /TheFishKing/last
 
 <h3> Author's Notes:</h3>
 Shoutout to all the Arthuriana/Shakespeare nerds out there! I hope all 5 of you appreciate the
-reference to King Arthur originally being Roman here. 
+tiny reference to King Arthur originally being a Roman general here. 
 
