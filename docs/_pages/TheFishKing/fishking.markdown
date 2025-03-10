@@ -73,7 +73,7 @@ header:
     <a href="/TheFishKing/1-7" style="text_decoration:none">
         <img style="height:100px; text-align:left; margin:1%" src="/assets/TheFishKing/7_thumb.jpg">
     </a>
-    <a href="/TheFishKing/1-7">
+    <a href="/TheFishKing/last">
         <font size="5"><b>Quest 1.7</b></font>
     </a>
 </div>
