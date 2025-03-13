@@ -23,7 +23,7 @@ comments: true
     </a>
 </div>
 
-<div style="text-align:center; padding-top:5px; padding-bottom:5px"><img style="width:600px" src="/assets/TheFishKing/FishKingTitle.jpeg" alt="The Fish King"> </div>
+<div style="text-align:center; padding-top:5px; padding-bottom:5px"><img style="width:600px" src="/assets/TheFishKing/FishKingTitle_small.png" alt="The Fish King"> </div>
 
 <div style="text-align:center">
     <img style="height:28px; text-align:left; margin:1%" src="/assets/Misc/first.PNG" alt="First">

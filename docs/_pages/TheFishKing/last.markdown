@@ -30,7 +30,7 @@ permalink: /TheFishKing/last
 </div>
 
 <div style="text-align:center; padding-top:5px;padding-bottom:5px">
-    <img style="width:1200px" src="/assets/TheFishKing/7.png" alt="The Fish King">
+    <img style="width:1200px" src="/assets/TheFishKing/7_small.png" alt="The Fish King">
 </div>
 
 <div style="text-align:center">
