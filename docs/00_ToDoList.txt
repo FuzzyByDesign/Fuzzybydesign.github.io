@@ -1,0 +1,6 @@
+***TO DO LIST***
+
+- Combine all fish king markdown files into just 1 for simplicity somehow?
+- mailing list?
+- Fix header and title fonts
+- add comments ability?
