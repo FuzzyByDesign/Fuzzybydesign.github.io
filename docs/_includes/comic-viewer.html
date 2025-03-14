@@ -1,0 +1,326 @@
+{% comment %}
+  Comic Viewer Include
+  
+  Parameters:
+  - comic_title: Title to display (optional)
+  - comic_folder: Path to the folder containing comic frames (default: /assets/images/comic/)
+  - file_extension: File extension of the comic frames (default: .jpg)
+  - frame_prefix: Prefix for the frame filenames (default: frame-)
+  - total_frames: Total number of frames in the comic
+{% endcomment %}
+
+{% assign comic_title = include.comic_title | default: "Comic Viewer" %}
+{% assign comic_folder = include.comic_folder | default: "/assets/images/comic/" %}
+{% assign file_extension = include.file_extension | default: ".jpg" %}
+{% assign frame_prefix = include.frame_prefix | default: "frame-" %}
+{% assign total_frames = include.total_frames | default: 10 %}
+
+<div class="comic-container">
+  {% if comic_title %}
+    <h2 class="comic-title">{{ comic_title }}</h2>
+  {% endif %}
+  
+  <div class="comic-controls">
+    <button id="prev-frame" class="comic-button">Previous</button>
+    <span id="frame-counter">Frame 1 of {{ total_frames }}</span>
+    <button id="next-frame" class="comic-button">Next</button>
+  </div>
+  
+  <div class="comic-viewer-wrapper">
+    <div class="comic-viewer" id="comic-viewer">
+      <!-- Comic frames will be loaded here dynamically -->
+    </div>
+  </div>
+</div>
+
+<style>
+  .comic-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .comic-title {
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .comic-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    gap: 15px;
+  }
+  
+  .comic-button {
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .comic-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .comic-button:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+  }
+  
+  #frame-counter {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .comic-viewer-wrapper {
+    overflow: hidden;
+    position: relative;
+    margin-top: 20px;
+    cursor: grab;
+  }
+  
+  .comic-viewer-wrapper.dragging {
+    cursor: grabbing;
+  }
+  
+  .comic-viewer {
+    display: grid;
+    gap: 0;
+    transition: transform 0.2s ease-out;
+  }
+  
+  .comic-frame {
+    width: 100%;
+    height: auto;
+    border: none;
+    display: block;
+    pointer-events: none; /* Prevents images from interfering with drag */
+  }
+  
+  .comic-frame.active {
+    box-shadow: 0 0 0 3px #3498db;
+  }
+</style>
+
+<script>
+// Wait for the document to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+  // Configuration variables
+  const comicFolder = "{{ comic_folder }}";
+  const fileExtension = "{{ file_extension }}";
+  const totalFrames = {{ total_frames }};
+  const framePrefix = "{{ frame_prefix }}";
+  
+  // Get DOM elements
+  const comicViewer = document.getElementById('comic-viewer');
+  const comicViewerWrapper = comicViewer.parentElement;
+  const prevButton = document.getElementById('prev-frame');
+  const nextButton = document.getElementById('next-frame');
+  const frameCounter = document.getElementById('frame-counter');
+  
+  // Set initial state
+  let currentFrame = 1;
+  let isDragging = false;
+  let startX = 0;
+  let startScrollLeft = 0;
+  let dragDistance = 0;
+  let dragThreshold = 50; // Minimum distance to trigger frame change
+  
+  // Add a window resize listener to handle responsive changes
+  window.addEventListener('resize', function() {
+    updateDisplay();
+  });
+  
+  // Calculate how many frames to show based on screen size and remaining frames
+  function calculateFramesToShow() {
+    const width = window.innerWidth;
+    const framesRemaining = totalFrames - currentFrame + 1;
+    
+    // Determine base number by screen width
+    let baseFrames = 1;
+    if (width >= 1200) baseFrames = 5;
+    else if (width >= 992) baseFrames = 4;
+    else if (width >= 768) baseFrames = 3;
+    else if (width >= 576) baseFrames = 2;
+    
+    // Never show more frames than actually remain
+    return Math.min(baseFrames, framesRemaining);
+  }
+  
+  // Main function to update the display
+  function updateDisplay() {
+    const visibleFrames = calculateFramesToShow();
+    
+    // Update frame counter
+    frameCounter.textContent = `Frame ${currentFrame} of ${totalFrames}`;
+    
+    // Update button states
+    prevButton.disabled = (currentFrame === 1);
+    nextButton.disabled = (currentFrame + visibleFrames > totalFrames);
+    
+    // Clear the current display
+    comicViewer.innerHTML = '';
+    
+    // Dynamically set the grid columns
+    comicViewer.style.gridTemplateColumns = `repeat(${visibleFrames}, 1fr)`;
+    
+    // Add frames to the display
+    for (let i = 0; i < visibleFrames; i++) {
+      const frameNumber = currentFrame + i;
+      
+      // Stop if we've reached the end of the comic
+      if (frameNumber > totalFrames) {
+        break;
+      }
+      
+      // Create the frame element
+      const frame = document.createElement('img');
+      frame.src = `${comicFolder}${framePrefix}${frameNumber}${fileExtension}`;
+      frame.alt = `Frame ${frameNumber}`;
+      frame.className = 'comic-frame';
+      frame.style.display = 'block';
+      
+      // First frame is active
+      if (i === 0) {
+        frame.classList.add('active');
+      }
+      
+      // Add to the display
+      comicViewer.appendChild(frame);
+    }
+  }
+  
+  // Move to the next set of frames
+  function nextFrames() {
+    const visibleFrames = calculateFramesToShow();
+    if (currentFrame + visibleFrames <= totalFrames) {
+      currentFrame = Math.min(totalFrames, currentFrame + visibleFrames);
+      updateDisplay();
+      return true;
+    }
+    return false;
+  }
+  
+  // Move to the previous set of frames
+  function prevFrames() {
+    const visibleFrames = calculateFramesToShow();
+    if (currentFrame > 1) {
+      currentFrame = Math.max(1, currentFrame - visibleFrames);
+      updateDisplay();
+      return true;
+    }
+    return false;
+  }
+  
+  // Event listeners for navigation buttons
+  prevButton.addEventListener('click', function() {
+    prevFrames();
+  });
+  
+  nextButton.addEventListener('click', function() {
+    nextFrames();
+  });
+  
+  // Handle drag start
+  comicViewerWrapper.addEventListener('mousedown', function(e) {
+    isDragging = true;
+    startX = e.pageX;
+    dragDistance = 0;
+    comicViewerWrapper.classList.add('dragging');
+    e.preventDefault();
+  });
+  
+  // Handle drag end
+  document.addEventListener('mouseup', function() {
+    if (isDragging) {
+      comicViewerWrapper.classList.remove('dragging');
+      isDragging = false;
+      
+      // If the user dragged far enough, change frames
+      if (Math.abs(dragDistance) > dragThreshold) {
+        if (dragDistance > 0) {
+          prevFrames();
+        } else {
+          nextFrames();
+        }
+      }
+      
+      // Reset the transform
+      comicViewer.style.transform = '';
+    }
+  });
+  
+  // Handle drag move
+  document.addEventListener('mousemove', function(e) {
+    if (!isDragging) return;
+    
+    const x = e.pageX;
+    dragDistance = x - startX;
+    
+    // Apply a drag effect with limited movement
+    const maxDrag = comicViewerWrapper.offsetWidth / 4;
+    const limitedDrag = Math.max(Math.min(dragDistance, maxDrag), -maxDrag);
+    
+    comicViewer.style.transform = `translateX(${limitedDrag}px)`;
+  });
+  
+  // Touch support for mobile devices
+  comicViewerWrapper.addEventListener('touchstart', function(e) {
+    isDragging = true;
+    startX = e.touches[0].pageX;
+    dragDistance = 0;
+    comicViewerWrapper.classList.add('dragging');
+  });
+  
+  document.addEventListener('touchend', function() {
+    if (isDragging) {
+      comicViewerWrapper.classList.remove('dragging');
+      isDragging = false;
+      
+      if (Math.abs(dragDistance) > dragThreshold) {
+        if (dragDistance > 0) {
+          prevFrames();
+        } else {
+          nextFrames();
+        }
+      }
+      
+      comicViewer.style.transform = '';
+    }
+  });
+  
+  document.addEventListener('touchmove', function(e) {
+    if (!isDragging) return;
+    
+    const x = e.touches[0].pageX;
+    dragDistance = x - startX;
+    
+    // Prevent page scrolling while dragging
+    if (Math.abs(dragDistance) > 10) {
+      e.preventDefault();
+    }
+    
+    const maxDrag = comicViewerWrapper.offsetWidth / 4;
+    const limitedDrag = Math.max(Math.min(dragDistance, maxDrag), -maxDrag);
+    
+    comicViewer.style.transform = `translateX(${limitedDrag}px)`;
+  }, { passive: false });
+  
+  // Add keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') {
+      prevFrames();
+    } else if (e.key === 'ArrowRight') {
+      nextFrames();
+    }
+  });
+  
+  // Initialize the display
+  updateDisplay();
+});
+</script>
