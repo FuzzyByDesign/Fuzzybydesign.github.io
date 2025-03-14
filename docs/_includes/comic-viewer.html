@@ -35,7 +35,7 @@
   .comic-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0px;
   }
   
   .comic-title {
@@ -140,10 +140,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Determine base number by screen width
     let baseFrames = 1;
-    if (width >= 1200) baseFrames = 5;
-    else if (width >= 992) baseFrames = 4;
-    else if (width >= 768) baseFrames = 3;
-    else if (width >= 576) baseFrames = 2;
+    if (width >= 1100) baseFrames = 4;
+    else if (width >= 992) baseFrames = 3;
+    else if (width >= 768) baseFrames = 2;
     
     // Never show more frames than actually remain
     //return Math.min(baseFrames, framesRemaining);
