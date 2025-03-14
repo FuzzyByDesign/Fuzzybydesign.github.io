@@ -9,7 +9,7 @@
   - total_frames: Total number of frames in the comic
 {% endcomment %}
 
-{% assign comic_title = include.comic_title | default: "Comic Viewer" %}
+{% assign comic_title = include.comic_title %}
 {% assign comic_folder = include.comic_folder | default: "/assets/images/comic/" %}
 {% assign file_extension = include.file_extension | default: ".jpg" %}
 {% assign frame_prefix = include.frame_prefix | default: "frame-" %}
@@ -19,17 +19,15 @@
   {% if comic_title %}
     <h2 class="comic-title">{{ comic_title }}</h2>
   {% endif %}
-  
-  <div class="comic-controls">
-    <button id="prev-frame" class="comic-button">Previous</button>
-    <span id="frame-counter">Frame 1 of {{ total_frames }}</span>
-    <button id="next-frame" class="comic-button">Next</button>
-  </div>
-  
   <div class="comic-viewer-wrapper">
     <div class="comic-viewer" id="comic-viewer">
       <!-- Comic frames will be loaded here dynamically -->
     </div>
+  </div>
+  <div class="comic-controls">
+    <button id="prev-frame" class="comic-button">Previous</button>
+    <span id="frame-counter">Frame 1 of {{ total_frames }}</span>
+    <button id="next-frame" class="comic-button">Next</button>
   </div>
 </div>
 
@@ -103,7 +101,6 @@
   }
   
   .comic-frame.active {
-    box-shadow: 0 0 0 3px #3498db;
   }
 </style>
 
@@ -149,7 +146,8 @@ document.addEventListener('DOMContentLoaded', function() {
     else if (width >= 576) baseFrames = 2;
     
     // Never show more frames than actually remain
-    return Math.min(baseFrames, framesRemaining);
+    //return Math.min(baseFrames, framesRemaining);
+    return Math.min(baseFrames,totalFrames);
   }
   
   // Main function to update the display

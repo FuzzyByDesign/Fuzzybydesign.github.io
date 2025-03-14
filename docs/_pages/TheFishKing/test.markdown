@@ -31,7 +31,6 @@ permalink: /TheFishKing/test
 
 <section class="comic-section">
     {% include comic-viewer.html 
-      comic_title="My Awesome Comic" 
       comic_folder="/assets/test/"
       file_extension=".PNG"
       frame_prefix="frame-"
