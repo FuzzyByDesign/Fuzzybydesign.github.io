@@ -2,5 +2,5 @@
 
 - Combine all fish king markdown files into just 1 for simplicity somehow?
 - mailing list?
-- Fix header and title fonts
 - add comments ability?
+- figure out how to show multiple frames at once if window size allows for it
