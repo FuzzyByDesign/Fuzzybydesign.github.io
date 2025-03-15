@@ -130,272 +130,274 @@
 </style>
 
 <script>
-// Wait for the document to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-  // Configuration variables
-  const comicFolder = "{{ comic_folder }}";
-  const fileExtension = "{{ file_extension }}";
-  const totalFrames = {{ total_frames }};
-  const framePrefix = "{{ frame_prefix }}";
-  
-  // Get DOM elements
-  const comicViewer = document.getElementById('comic-viewer');
-  const comicViewerWrapper = comicViewer.parentElement;
-  const prevButton = document.getElementById('prev-frame');
-  const nextButton = document.getElementById('next-frame');
-  const frameCounter = document.getElementById('frame-counter');
-  const progressBar = document.getElementById('progress-bar');
-  
-  // Set initial state
-  let currentStartFrame = 1;
-  let isDragging = false;
-  let startX = 0;
-  let currentTranslate = 0;
-  let previousTranslate = 0;
-  let animationID = 0;
-  let frameWidth = 0;
-  let framesPerView = 1;
-  let curframesPerView = 1;
-  let maxStartFrame = 1;
-  
-  // Calculate how many frames can be shown at once based on window width
-  function calculateFramesPerView() {
-    const windowWidth = window.innerWidth;
-    const maxFrameWidth = 700; // Max width for a single frame
-    let viewerWidth = comicViewerWrapper.offsetWidth;
-    let viewerHeight = comicViewerWrapper.offsetHeight;
-    
-    // Calculate how many frames can fit in the window
-    framesPerView = Math.max(1, Math.ceil(windowWidth / maxFrameWidth));
-    
-    // Calculate the width of each frame
-    frameWidth = comicViewerWrapper.offsetWidth / framesPerView;
-    curframesPerView = Math.max(1, Math.floor(windowWidth / frameWidth));
-    
-    // Calculate the maximum start frame (ensuring the last frame is always visible)
-    maxStartFrame = Math.max(1, totalFrames - curframesPerView + 1);
-    
-    // Make sure current start frame is valid
-    currentStartFrame = Math.min(currentStartFrame, maxStartFrame);
+  document.addEventListener('DOMContentLoaded', function() {
+    // Configuration variables
+    const comicFolder = "{{ comic_folder }}";
+    const fileExtension = "{{ file_extension }}";
+    const totalFrames = {{ total_frames }};
+    const framePrefix = "{{ frame_prefix }}";
 
-  }
-  
-  // Initialize frames
-  function initializeFrames() {
-    // Clear existing frames
-    comicViewer.innerHTML = '';
-    
-    // Add all frames to the container
-    for (let i = 1; i <= totalFrames; i++) {
-      const frame = document.createElement('img');
-      frame.src = `${comicFolder}${framePrefix}${i}${fileExtension}`;
-      frame.alt = `Frame ${i}`;
-      frame.className = 'comic-frame';
-      frame.dataset.frameNumber = i;
-      
-      comicViewer.appendChild(frame);
-    }
-    
-    // Set initial position and update display
-    updateDisplay();
-  }
-  
-  // Update display based on current start frame
-  function updateDisplay() {
+    // Get DOM elements
+    const comicViewer = document.getElementById('comic-viewer');
+    const comicViewerWrapper = comicViewer.parentElement;
+    const prevButton = document.getElementById('prev-frame');
+    const nextButton = document.getElementById('next-frame');
+    const frameCounter = document.getElementById('frame-counter');
+    const progressBar = document.getElementById('progress-bar');
 
-    // Calculate the end frame (either the last frame in view or the total number of frames)
-    const endFrame = Math.min(currentStartFrame + curframesPerView - 1, totalFrames);
-    
-    // Update frame counter to show current visible frames
-    if(curframesPerView==1){
-      frameCounter.textContent = `Frame ${currentStartFrame} of ${totalFrames}`;
-    }
-    else{
-      frameCounter.textContent = `Frame ${currentStartFrame}-${endFrame} of ${totalFrames}`;
-    }
-//  debug
-//    let windwidth = window.innerWidth;
-//    let viewerWidth = comicViewerWrapper.offsetWidth;
-//    let viewerHeight = comicViewer.offsetHeight;
-//frameCounter.textContent = `cur ${currentStartFrame}, fpv ${curframesPerView}, end ${endFrame}, window ${windwidth}, vw ${viewerWidth}, msf ${maxStartFrame}`
-    
-    // Update button states
-    prevButton.disabled = (currentStartFrame === 1);
-    nextButton.disabled = (currentStartFrame >= maxStartFrame);
-    
-    // Update all frame widths
-    const frames = comicViewer.querySelectorAll('.comic-frame');
-    frames.forEach(frame => {
-      frame.style.width = `${100 / framesPerView}%`;
-      frame.style.flexBasis = `${100 / framesPerView}%`;
-    });
-    
-    // Calculate new translate position
-    const translateX = -(currentStartFrame - 1) * frameWidth;
-    
-    // Apply smooth transition
-    comicViewer.style.transform = `translateX(${translateX}px)`;
-    previousTranslate = translateX;
-    currentTranslate = translateX;
-    
-    // Update progress bar - adjust to reflect position within the comic
-    // For a 10-frame comic with 3 frames visible at once, the progress should go from 0% to 100% 
-    // over the range of starting frames 1 through 8
-    const progress = ((currentStartFrame - 1) / (maxStartFrame - 1)) * 100;
-    progressBar.style.width = `${progress}%`;
-  }
-  
-  // Move forward by one frame
-  function nextFrame() {
-    if (currentStartFrame < maxStartFrame) {
-      currentStartFrame++;
-      updateDisplay();
-      return true;
-    }
-    return false;
-  }
-  
-  // Move backward by one frame
-  function prevFrame() {
-    if (currentStartFrame > 1) {
-      currentStartFrame--;
-      updateDisplay();
-      return true;
-    }
-    return false;
-  }
-  
-  // Event listeners for navigation buttons
-  prevButton.addEventListener('click', function() {
-    prevFrame();
-  });
-  
-  nextButton.addEventListener('click', function() {
-    nextFrame();
-  });
+    // Set initial state
+    let currentStartFrame = 1;
+    let isDragging = false;
+    let startX = 0;
+    let currentTranslate = 0;
+    let previousTranslate = 0;
+    let animationID = 0;
+    let frameWidth = 0;
+    let framesPerView = 1;
+    let maxStartFrame = 1;
 
-  // Touch and gesture controls
-  function touchStart(event) {
-    isDragging = true;
-    startX = event.type.includes('mouse') 
-      ? event.pageX 
-      : event.touches[0].clientX;
-    
-    // Stop any ongoing animation
-    cancelAnimationFrame(animationID);
-    
-    comicViewerWrapper.classList.add('dragging');
-    
-    // Prevent default behavior to avoid page scrolling on mobile
-    if (event.type.includes('touch')) {
-      event.preventDefault();
-    }
-  }
-  
-  function touchMove(event) {
-    if (!isDragging) return;
-    
-    const currentX = event.type.includes('mouse')
-      ? event.pageX
-      : event.touches[0].clientX;
-    
-    const diff = currentX - startX;
-    const moveAmount = previousTranslate + diff;
-    
-    // Apply some resistance at the edges
-    const maxTranslate = 0;
-    const minTranslate = -(maxStartFrame - 1) * frameWidth;
-    
-    let resistanceAmount = 0;
-    if (moveAmount > maxTranslate) {
-      resistanceAmount = (moveAmount - maxTranslate) * 0.3;
-      currentTranslate = maxTranslate + resistanceAmount;
-    } else if (moveAmount < minTranslate) {
-      resistanceAmount = (minTranslate - moveAmount) * 0.3;
-      currentTranslate = minTranslate - resistanceAmount;
-    } else {
-      currentTranslate = moveAmount;
-    }
-    
-    comicViewer.style.transform = `translateX(${currentTranslate}px)`;
-    
-    // Prevent default to stop page scrolling while dragging
-    if (event.type.includes('touch') && Math.abs(diff) > 10) {
-      event.preventDefault();
-    }
-  }
-  
-  function touchEnd() {
-    if (!isDragging) return;
-    isDragging = false;
-    comicViewerWrapper.classList.remove('dragging');
-    
-    // Calculate which frame to snap to based on swipe direction and velocity
-    const movedBy = currentTranslate - previousTranslate;
-    
-    if (Math.abs(movedBy) > frameWidth * 0.2) {
-      // If moved more than 20% of frame width, move to next/prev frame
-      if (movedBy > 0) {
-        prevFrame();
-      } else {
-        nextFrame();
+    // Initialize frames
+    function initializeFrames() {
+      // Clear existing frames
+      comicViewer.innerHTML = '';
+
+      // Add all frames to the container
+      for (let i = 1; i <= totalFrames; i++) {
+        const frame = document.createElement('img');
+        frame.src = `${comicFolder}${framePrefix}${i}${fileExtension}`;
+        frame.alt = `Frame ${i}`;
+        frame.className = 'comic-frame';
+        frame.dataset.frameNumber = i;
+
+        comicViewer.appendChild(frame);
       }
-    } else {
-      // Otherwise snap back to current frame
-      updateDisplay();
-    }
-  }
-  
-  // Add event listeners for mouse and touch events
-  comicViewerWrapper.addEventListener('mousedown', touchStart);
-  comicViewerWrapper.addEventListener('touchstart', touchStart, { passive: false });
-  
-  window.addEventListener('mousemove', touchMove);
-  window.addEventListener('touchmove', touchMove, { passive: false });
-  
-  window.addEventListener('mouseup', touchEnd);
-  window.addEventListener('touchend', touchEnd);
-  
-  // Add keyboard navigation
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowLeft') {
-      prevFrame();
-    } else if (e.key === 'ArrowRight') {
-      nextFrame();
-    } else if (e.key >= '1' && e.key <= '9') {
-      // Jump to frame by number key (if in range)
-      const frameNum = parseInt(e.key);
-      if (frameNum <= totalFrames) {
-        // Go to that frame as the starting frame (or as close as allowed)
-        currentStartFrame = Math.min(frameNum, maxStartFrame);
+
+      // Wait for the first image to load to get dimensions
+      const firstImage = comicViewer.querySelector('.comic-frame');
+      if (firstImage) {
+        if (firstImage.complete) {
+          calculateFramesPerView();
+          updateDisplay();
+        } else {
+          firstImage.onload = function() {
+            calculateFramesPerView();
+            updateDisplay();
+          };
+        }
+      } else {
+        // Fallback if no images loaded
+        calculateFramesPerView();
         updateDisplay();
       }
     }
-  });
-  
-  // Handle window resize
-  window.addEventListener('resize', function() {
-    // Recalculate frames per view
-    calculateFramesPerView();
-    updateDisplay();
-  });
-  
-  // Handle wheel events for scrolling
-  comicViewerWrapper.addEventListener('wheel', function(e) {
-    e.preventDefault();
-    
-    // Determine scroll direction
-    if (e.deltaY > 0) {
-      nextFrame();
-    } else {
-      prevFrame();
+
+    // Calculate how many frames can be shown at once based on window width
+    function calculateFramesPerView() {
+      const maxFrameWidth = 700; // Max width for a single frame
+      let viewerWidth = comicViewerWrapper.offsetWidth;
+      let viewerHeight = comicViewerWrapper.offsetHeight;
+
+      // Calculate the width of each frame (capped at maxFrameWidth)
+      frameWidth = Math.min(Math.min(maxFrameWidth, viewerWidth),viewerHeight);
+
+      // Calculate how many frames can fit in the viewer
+      framesPerView = Math.max(1, Math.floor(viewerWidth / frameWidth));
+
+      // Calculate the maximum start frame (ensuring the last frame is always visible)
+      maxStartFrame = Math.max(1, totalFrames - framesPerView + 1);
+
+      // Make sure current start frame is valid
+      currentStartFrame = Math.min(currentStartFrame, maxStartFrame);
     }
-  }, { passive: false });
-  
-  // Calculate initial layout
-  calculateFramesPerView();
-  
-  // Load frames and initialize the viewer
-  initializeFrames();
-});
+
+    // Update display based on current start frame
+    function updateDisplay() {
+      // Calculate the end frame (either the last frame in view or the total number of frames)
+      const endFrame = Math.min(currentStartFrame + framesPerView - 1, totalFrames);
+
+      // Update frame counter to show current visible frames
+      if(framesPerView == 1) {
+        frameCounter.textContent = `Frame ${currentStartFrame} of ${totalFrames}`;
+      } else {
+        frameCounter.textContent = `Frames ${currentStartFrame}-${endFrame} of ${totalFrames}`;
+      }
+  //  debug
+      let windwidth = window.innerWidth;
+      let viewerWidth = comicViewerWrapper.offsetWidth;
+      let viewerHeight = comicViewer.offsetHeight;
+  //frameCounter.textContent = `cur ${currentStartFrame}, fpv ${framesPerView}, end ${endFrame}, window ${windwidth}, vw ${viewerWidth}, msf ${maxStartFrame}, vh ${viewerHeight}, vw ${viewerWidth}`
+
+      // Update button states
+      prevButton.disabled = (currentStartFrame === 1);
+      nextButton.disabled = (currentStartFrame >= maxStartFrame);
+
+      // Update all frame widths
+      const frames = comicViewer.querySelectorAll('.comic-frame');
+      frames.forEach(frame => {
+        frame.style.width = `${frameWidth}px`;
+      });
+
+      // Calculate new translate position
+      const translateX = -(currentStartFrame - 1) * frameWidth;
+
+      // Apply smooth transition
+      comicViewer.style.transform = `translateX(${translateX}px)`;
+      previousTranslate = translateX;
+      currentTranslate = translateX;
+
+      // Update progress bar
+      const progress = ((currentStartFrame - 1) / (maxStartFrame - 1)) * 100;
+      progressBar.style.width = `${progress}%`;
+    }
+
+    // Move forward by one frame
+    function nextFrame() {
+      if (currentStartFrame < maxStartFrame) {
+        currentStartFrame++;
+        updateDisplay();
+        return true;
+      }
+      return false;
+    }
+
+    // Move backward by one frame
+    function prevFrame() {
+      if (currentStartFrame > 1) {
+        currentStartFrame--;
+        updateDisplay();
+        return true;
+      }
+      return false;
+    }
+
+    // Event listeners for navigation buttons
+    prevButton.addEventListener('click', function() {
+      prevFrame();
+    });
+
+    nextButton.addEventListener('click', function() {
+      nextFrame();
+    });
+
+    // Touch and gesture controls
+    function touchStart(event) {
+      isDragging = true;
+      startX = event.type.includes('mouse')
+        ? event.pageX
+        : event.touches[0].clientX;
+
+      // Stop any ongoing animation
+      cancelAnimationFrame(animationID);
+
+      comicViewerWrapper.classList.add('dragging');
+
+      // Prevent default behavior to avoid page scrolling on mobile
+      if (event.type.includes('touch')) {
+        event.preventDefault();
+      }
+    }
+
+    function touchMove(event) {
+      if (!isDragging) return;
+
+      const currentX = event.type.includes('mouse')
+        ? event.pageX
+        : event.touches[0].clientX;
+
+      const diff = currentX - startX;
+      const moveAmount = previousTranslate + diff;
+
+      // Apply some resistance at the edges
+      const maxTranslate = 0;
+      const minTranslate = -(maxStartFrame - 1) * frameWidth;
+
+      let resistanceAmount = 0;
+      if (moveAmount > maxTranslate) {
+        resistanceAmount = (moveAmount - maxTranslate) * 0.3;
+        currentTranslate = maxTranslate + resistanceAmount;
+      } else if (moveAmount < minTranslate) {
+        resistanceAmount = (minTranslate - moveAmount) * 0.3;
+        currentTranslate = minTranslate - resistanceAmount;
+      } else {
+        currentTranslate = moveAmount;
+      }
+
+      comicViewer.style.transform = `translateX(${currentTranslate}px)`;
+
+      // Prevent default to stop page scrolling while dragging
+      if (event.type.includes('touch') && Math.abs(diff) > 10) {
+        event.preventDefault();
+      }
+    }
+
+    function touchEnd() {
+      if (!isDragging) return;
+      isDragging = false;
+      comicViewerWrapper.classList.remove('dragging');
+
+      // Calculate which frame to snap to based on swipe direction and velocity
+      const movedBy = currentTranslate - previousTranslate;
+
+      if (Math.abs(movedBy) > frameWidth * 0.2) {
+        // If moved more than 20% of frame width, move to next/prev frame
+        if (movedBy > 0) {
+          prevFrame();
+        } else {
+          nextFrame();
+        }
+      } else {
+        // Otherwise snap back to current frame
+        updateDisplay();
+      }
+    }
+
+    // Add event listeners for mouse and touch events
+    comicViewerWrapper.addEventListener('mousedown', touchStart);
+    comicViewerWrapper.addEventListener('touchstart', touchStart, { passive: false });
+
+    window.addEventListener('mousemove', touchMove);
+    window.addEventListener('touchmove', touchMove, { passive: false });
+
+    window.addEventListener('mouseup', touchEnd);
+    window.addEventListener('touchend', touchEnd);
+
+    // Add keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') {
+        prevFrame();
+      } else if (e.key === 'ArrowRight') {
+        nextFrame();
+      } else if (e.key >= '1' && e.key <= '9') {
+        // Jump to frame by number key (if in range)
+        const frameNum = parseInt(e.key);
+        if (frameNum <= totalFrames) {
+          // Go to that frame as the starting frame (or as close as allowed)
+          currentStartFrame = Math.min(frameNum, maxStartFrame);
+          updateDisplay();
+        }
+      }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      calculateFramesPerView();
+      updateDisplay();
+    });
+
+    // Handle wheel events for scrolling
+    comicViewerWrapper.addEventListener('wheel', function(e) {
+      e.preventDefault();
+
+      // Determine scroll direction
+      if (e.deltaY > 0) {
+        nextFrame();
+      } else {
+        prevFrame();
+      }
+    }, { passive: false });
+
+    // Load frames and initialize the viewer
+    initializeFrames();
+  });
+
 </script>
