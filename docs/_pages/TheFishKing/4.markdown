@@ -33,9 +33,14 @@ permalink: /TheFishKing/1-4
     </a>
 </div>
 
-<div style="text-align:center; padding-top:5px;padding-bottom:5px">
-    <img style="width:1200px" src="/assets/TheFishKing/4_small.png" alt="The Fish King">
-</div>
+<section class="comic-section">
+    {% include comic-viewer.html
+      comic_folder="/assets/TheFishKing/"
+      file_extension=".PNG"
+      frame_prefix="4-"
+      total_frames=3
+    %}
+</section>
 
 <div style="text-align:center">
     <a href="/TheFishKing/titlepage" style="text-decoration:none">

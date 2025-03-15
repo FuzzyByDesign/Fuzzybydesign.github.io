@@ -24,21 +24,22 @@
       <!-- Comic frames will be loaded here dynamically -->
     </div>
   </div>
+
+  <!-- Progress bar for visualization -->
+  <div class="progress-container">
+    <div id="progress-bar" class="progress-bar"></div>
+  </div>
   <div class="comic-controls">
     <button id="prev-frame" class="comic-button">Previous</button>
     <span id="frame-counter">Frame 1 of {{ total_frames }}</span>
     <button id="next-frame" class="comic-button">Next</button>
   </div>
   
-  <!-- Progress bar for visualization -->
-  <div class="progress-container">
-    <div id="progress-bar" class="progress-bar"></div>
-  </div>
 </div>
 
 <style>
   .comic-container {
-    max-width: 1100px;	
+    max-width: 1300px;	
     width: 100%;
     margin: 0 auto;
     padding: 0px;
@@ -88,7 +89,6 @@
     margin-top: 20px;
     cursor: grab;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     max-height: 70vh;
   }
   
@@ -103,8 +103,10 @@
   }
   
   .comic-frame {
-    height: auto;
-    max-height: 80vh;
+    height: 100%;
+/*    max-height: 70vh; */
+    max-height: 600px;
+    max-width: 700px;
     object-fit: contain;
     pointer-events: none; /* Prevents images from interfering with drag */
   }
@@ -158,10 +160,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Calculate how many frames can be shown at once based on window width
   function calculateFramesPerView() {
     const windowWidth = window.innerWidth;
-    const maxFrameWidth = 650; // Max width for a single frame
+    const maxFrameWidth = 700; // Max width for a single frame
     
     // Calculate how many frames can fit in the window
-    framesPerView = Math.max(1, Math.floor(windowWidth / maxFrameWidth));
+    framesPerView = Math.max(1, Math.ceil(windowWidth / maxFrameWidth));
     
     // Calculate the width of each frame
     frameWidth = comicViewerWrapper.offsetWidth / framesPerView;
@@ -195,11 +197,20 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Update display based on current start frame
   function updateDisplay() {
+
     // Calculate the end frame (either the last frame in view or the total number of frames)
     const endFrame = Math.min(currentStartFrame + framesPerView - 1, totalFrames);
     
     // Update frame counter to show current visible frames
-    frameCounter.textContent = `Frame ${currentStartFrame}-${endFrame} of ${totalFrames}`;
+    if(framesPerView==1){
+      frameCounter.textContent = `Frame ${currentStartFrame} of ${totalFrames}`;
+    }
+    else{
+      frameCounter.textContent = `Frame ${currentStartFrame}-${endFrame} of ${totalFrames}`;
+    }
+//  Debug
+//    let windwidth = window.innerWidth;
+//    frameCounter.textContent = `cur ${currentStartFrame}, fpv ${framesPerView}, end ${endFrame}, window ${windwidth}`;
     
     // Update button states
     prevButton.disabled = (currentStartFrame === 1);

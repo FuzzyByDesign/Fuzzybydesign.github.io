@@ -31,9 +31,9 @@ permalink: /TheFishKing/test
 
 <section class="comic-section">
     {% include comic-viewer.html 
-      comic_folder="/assets/test/"
-      file_extension=".PNG"
-      frame_prefix="frame-"
+      comic_folder="/assets/TheFishKing/Temp/"
+      file_extension=".JPEG"
+      frame_prefix="1-"
       total_frames=3
     %}
 </section>

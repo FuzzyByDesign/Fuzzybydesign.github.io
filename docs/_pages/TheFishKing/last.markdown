@@ -29,9 +29,14 @@ permalink: /TheFishKing/last
     <img style="height:28px; text-align:right; margin:1%" src="/assets/Misc/last.PNG" alt="Last">
 </div>
 
-<div style="text-align:center; padding-top:5px;padding-bottom:5px">
-    <img style="width:1200px" src="/assets/TheFishKing/7_small.png" alt="The Fish King">
-</div>
+<section class="comic-section">
+    {% include comic-viewer.html
+      comic_folder="/assets/TheFishKing/"
+      file_extension=".PNG"
+      frame_prefix="7-"
+      total_frames=3
+    %}
+</section>
 
 <div style="text-align:center">
     <a href="/TheFishKing/titlepage" style="text-decoration:none">
