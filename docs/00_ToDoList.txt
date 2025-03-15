@@ -3,4 +3,4 @@
 - Combine all fish king markdown files into just 1 for simplicity somehow?
 - mailing list?
 - add comments ability?
-- figure out how to show multiple frames at once if window size allows for it
+- fix comic viewer resizing bug. I can make the comic viewer smaller by reducing the window size, but not bigger. If the window size is initially smaller and I increase it, the comic viewer does not get bigger. 
