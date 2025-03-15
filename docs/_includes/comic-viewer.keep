@@ -1,5 +1,5 @@
 {% comment %}
-  Comic Viewer Include with Smooth Scrolling & Responsive Layout
+  Comic Viewer Include with Smooth Scrolling
   
   Parameters:
   - comic_title: Title to display (optional)
@@ -38,11 +38,9 @@
 
 <style>
   .comic-container {
-    max-width: 1100px;	
-    width: 100%;
+    max-width: 700px;
     margin: 0 auto;
     padding: 0px;
-    box-sizing: border-box;
   }
   
   .comic-title {
@@ -89,7 +87,6 @@
     cursor: grab;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    max-height: 70vh;
   }
   
   .comic-viewer-wrapper.dragging {
@@ -103,10 +100,11 @@
   }
   
   .comic-frame {
+    flex: 0 0 100%;
+    max-width: 100%;
     height: auto;
-    max-height: 80vh;
-    object-fit: contain;
     pointer-events: none; /* Prevents images from interfering with drag */
+    object-fit: contain;
   }
   
   /* Progress bar styles */
@@ -145,33 +143,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const progressBar = document.getElementById('progress-bar');
   
   // Set initial state
-  let currentStartFrame = 1;
+  let currentFrame = 1;
   let isDragging = false;
   let startX = 0;
   let currentTranslate = 0;
   let previousTranslate = 0;
   let animationID = 0;
-  let frameWidth = 0;
-  let framesPerView = 1;
-  let maxStartFrame = 1;
-  
-  // Calculate how many frames can be shown at once based on window width
-  function calculateFramesPerView() {
-    const windowWidth = window.innerWidth;
-    const maxFrameWidth = 650; // Max width for a single frame
-    
-    // Calculate how many frames can fit in the window
-    framesPerView = Math.max(1, Math.floor(windowWidth / maxFrameWidth));
-    
-    // Calculate the width of each frame
-    frameWidth = comicViewerWrapper.offsetWidth / framesPerView;
-    
-    // Calculate the maximum start frame (ensuring the last frame is always visible)
-    maxStartFrame = Math.max(1, totalFrames - framesPerView + 1);
-    
-    // Make sure current start frame is valid
-    currentStartFrame = Math.min(currentStartFrame, maxStartFrame);
-  }
+  let frameWidth = comicViewerWrapper.offsetWidth;
   
   // Initialize frames
   function initializeFrames() {
@@ -193,54 +171,49 @@ document.addEventListener('DOMContentLoaded', function() {
     updateDisplay();
   }
   
-  // Update display based on current start frame
+  // Update display based on current frame
   function updateDisplay() {
-    // Calculate the end frame (either the last frame in view or the total number of frames)
-    const endFrame = Math.min(currentStartFrame + framesPerView - 1, totalFrames);
-    
-    // Update frame counter to show current visible frames
-    frameCounter.textContent = `Frame ${currentStartFrame}-${endFrame} of ${totalFrames}`;
+    // Update frame counter
+    frameCounter.textContent = `Frame ${currentFrame} of ${totalFrames}`;
     
     // Update button states
-    prevButton.disabled = (currentStartFrame === 1);
-    nextButton.disabled = (currentStartFrame >= maxStartFrame);
-    
-    // Update all frame widths
-    const frames = comicViewer.querySelectorAll('.comic-frame');
-    frames.forEach(frame => {
-      frame.style.width = `${100 / framesPerView}%`;
-      frame.style.flexBasis = `${100 / framesPerView}%`;
-    });
+    prevButton.disabled = (currentFrame === 1);
+    nextButton.disabled = (currentFrame === totalFrames);
     
     // Calculate new translate position
-    const translateX = -(currentStartFrame - 1) * frameWidth;
+    frameWidth = comicViewerWrapper.offsetWidth;
+    const translateX = -(currentFrame - 1) * frameWidth;
     
     // Apply smooth transition
     comicViewer.style.transform = `translateX(${translateX}px)`;
     previousTranslate = translateX;
     currentTranslate = translateX;
     
-    // Update progress bar - adjust to reflect position within the comic
-    // For a 10-frame comic with 3 frames visible at once, the progress should go from 0% to 100% 
-    // over the range of starting frames 1 through 8
-    const progress = ((currentStartFrame - 1) / (maxStartFrame - 1)) * 100;
+    // Update progress bar
+    const progress = ((currentFrame - 1) / (totalFrames - 1)) * 100;
     progressBar.style.width = `${progress}%`;
   }
   
-  // Move forward by one frame
+  // Function to go to a specific frame
+  function goToFrame(frameNumber) {
+    currentFrame = Math.max(1, Math.min(totalFrames, frameNumber));
+    updateDisplay();
+  }
+  
+  // Move to the next frame
   function nextFrame() {
-    if (currentStartFrame < maxStartFrame) {
-      currentStartFrame++;
+    if (currentFrame < totalFrames) {
+      currentFrame++;
       updateDisplay();
       return true;
     }
     return false;
   }
   
-  // Move backward by one frame
+  // Move to the previous frame
   function prevFrame() {
-    if (currentStartFrame > 1) {
-      currentStartFrame--;
+    if (currentFrame > 1) {
+      currentFrame--;
       updateDisplay();
       return true;
     }
@@ -286,7 +259,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Apply some resistance at the edges
     const maxTranslate = 0;
-    const minTranslate = -(maxStartFrame - 1) * frameWidth;
+    const minTranslate = -(totalFrames - 1) * frameWidth;
     
     let resistanceAmount = 0;
     if (moveAmount > maxTranslate) {
@@ -348,17 +321,15 @@ document.addEventListener('DOMContentLoaded', function() {
       // Jump to frame by number key (if in range)
       const frameNum = parseInt(e.key);
       if (frameNum <= totalFrames) {
-        // Go to that frame as the starting frame (or as close as allowed)
-        currentStartFrame = Math.min(frameNum, maxStartFrame);
-        updateDisplay();
+        goToFrame(frameNum);
       }
     }
   });
   
   // Handle window resize
   window.addEventListener('resize', function() {
-    // Recalculate frames per view
-    calculateFramesPerView();
+    // Recalculate frame width
+    frameWidth = comicViewerWrapper.offsetWidth;
     updateDisplay();
   });
   
@@ -373,9 +344,6 @@ document.addEventListener('DOMContentLoaded', function() {
       prevFrame();
     }
   }, { passive: false });
-  
-  // Calculate initial layout
-  calculateFramesPerView();
   
   // Load frames and initialize the viewer
   initializeFrames();
