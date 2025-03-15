@@ -155,24 +155,29 @@ document.addEventListener('DOMContentLoaded', function() {
   let animationID = 0;
   let frameWidth = 0;
   let framesPerView = 1;
+  let curframesPerView = 1;
   let maxStartFrame = 1;
   
   // Calculate how many frames can be shown at once based on window width
   function calculateFramesPerView() {
     const windowWidth = window.innerWidth;
     const maxFrameWidth = 700; // Max width for a single frame
+    let viewerWidth = comicViewerWrapper.offsetWidth;
+    let viewerHeight = comicViewerWrapper.offsetHeight;
     
     // Calculate how many frames can fit in the window
     framesPerView = Math.max(1, Math.ceil(windowWidth / maxFrameWidth));
     
     // Calculate the width of each frame
     frameWidth = comicViewerWrapper.offsetWidth / framesPerView;
+    curframesPerView = Math.max(1, Math.floor(windowWidth / frameWidth));
     
     // Calculate the maximum start frame (ensuring the last frame is always visible)
-    maxStartFrame = Math.max(1, totalFrames - framesPerView + 1);
+    maxStartFrame = Math.max(1, totalFrames - curframesPerView + 1);
     
     // Make sure current start frame is valid
     currentStartFrame = Math.min(currentStartFrame, maxStartFrame);
+
   }
   
   // Initialize frames
@@ -199,18 +204,20 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateDisplay() {
 
     // Calculate the end frame (either the last frame in view or the total number of frames)
-    const endFrame = Math.min(currentStartFrame + framesPerView - 1, totalFrames);
+    const endFrame = Math.min(currentStartFrame + curframesPerView - 1, totalFrames);
     
     // Update frame counter to show current visible frames
-    if(framesPerView==1){
+    if(curframesPerView==1){
       frameCounter.textContent = `Frame ${currentStartFrame} of ${totalFrames}`;
     }
     else{
       frameCounter.textContent = `Frame ${currentStartFrame}-${endFrame} of ${totalFrames}`;
     }
-//  Debug
+//  debug
 //    let windwidth = window.innerWidth;
-//    frameCounter.textContent = `cur ${currentStartFrame}, fpv ${framesPerView}, end ${endFrame}, window ${windwidth}`;
+//    let viewerWidth = comicViewerWrapper.offsetWidth;
+//    let viewerHeight = comicViewer.offsetHeight;
+//frameCounter.textContent = `cur ${currentStartFrame}, fpv ${curframesPerView}, end ${endFrame}, window ${windwidth}, vw ${viewerWidth}, msf ${maxStartFrame}`
     
     // Update button states
     prevButton.disabled = (currentStartFrame === 1);
