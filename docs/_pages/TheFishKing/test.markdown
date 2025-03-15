@@ -9,7 +9,7 @@ permalink: /TheFishKing/test
     </a>
 </div>
 <div style="text-align:center">
-    <font size="5"><b>Quest 1.7</b></font>
+    <font size="5"><b>Debug Page</b></font>
 </div>
 
 <div style="text-align:center">
@@ -29,11 +29,11 @@ permalink: /TheFishKing/test
     <img style="height:28px; text-align:right; margin:1%" src="/assets/Misc/last.PNG" alt="Last">
 </div>
 
-<section class="comic-section">
+<section class="comic-section-debug">
     {% include comic-viewer.html 
-      comic_folder="/assets/TheFishKing/Temp/"
-      file_extension=".JPEG"
-      frame_prefix="1-"
+      comic_folder="/assets/TheFishKing/"
+      file_extension=".PNG"
+      frame_prefix="2-"
       total_frames=3
     %}
 </section>
@@ -59,6 +59,4 @@ permalink: /TheFishKing/test
 </div>
 
 <h3> Author's Notes:</h3>
-Shoutout to all the Arthuriana/Shakespeare nerds out there! I hope all 5 of you appreciate the
-tiny reference to King Arthur originally being a Roman general here. 
-
+Test Test Test
