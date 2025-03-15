@@ -30,7 +30,7 @@ permalink: /TheFishKing/test
 </div>
 
 <section class="comic-section-debug">
-    {% include comic-viewer.html 
+    {% include comic-viewer_debug.html 
       comic_folder="/assets/TheFishKing/"
       file_extension=".PNG"
       frame_prefix="2-"
