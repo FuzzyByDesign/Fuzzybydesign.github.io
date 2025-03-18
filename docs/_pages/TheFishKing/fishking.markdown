@@ -3,7 +3,7 @@ layout: single
 classes: wide
 permalink: /TheFishKing/
 header:
-  image: /assets/TheFishKing/banner_text.PNG
+  image: /assets/TheFishKing/banner_text2.PNG
 ---
 
 <div style="text-align:left">
