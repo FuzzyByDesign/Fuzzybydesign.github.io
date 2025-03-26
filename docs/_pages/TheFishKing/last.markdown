@@ -9,7 +9,7 @@ permalink: /TheFishKing/last
     </a>
 </div>
 <div style="text-align:center">
-    <font size="5"><b>Quest 1.7</b></font>
+    <font size="5"><b>Quest 1.8</b></font>
 </div>
 
 <div style="text-align:center">
@@ -19,7 +19,7 @@ permalink: /TheFishKing/last
     <a href="/TheFishKing/titlepage" style="text-decoration:none">
         <img style="height:28px; text-align:left; margin:1%" src="/assets/Misc/first.PNG" alt="First">
     </a>
-    <a href="/TheFishKing/1-6" style="text-decoration:none">
+    <a href="/TheFishKing/1-7" style="text-decoration:none">
         <img style="height:28px; text-align:left; margin-left:1%; margin-right:10%" src="/assets/Misc/prev.PNG" alt="Previous">
     </a>
     <a href="/TheFishKing/" style="text-decoration:none">
@@ -32,8 +32,8 @@ permalink: /TheFishKing/last
 <section class="comic-section">
     {% include comic-viewer.html
       comic_folder="/assets/TheFishKing/"
-      file_extension=".PNG"
-      frame_prefix="7-"
+      file_extension=".JPEG"
+      frame_prefix="8-"
       total_frames=3
     %}
 </section>
@@ -42,7 +42,7 @@ permalink: /TheFishKing/last
     <a href="/TheFishKing/titlepage" style="text-decoration:none">
         <img style="height:28px; text-align:left; margin:1%" src="/assets/Misc/first.PNG" alt="First">
     </a>
-    <a href="/TheFishKing/1-6" style="text-decoration:none">
+    <a href="/TheFishKing/1-7" style="text-decoration:none">
         <img style="height:28px; text-align:left; margin-left:1%; margin-right:10%" src="/assets/Misc/prev.PNG" alt="Previous">
     </a>
     <a href="/TheFishKing/" style="text-decoration:none">
@@ -53,6 +53,4 @@ permalink: /TheFishKing/last
 </div>
 
 <h3> Author's Notes:</h3>
-Shoutout to all the Arthuriana/Shakespeare nerds out there! I hope all 5 of you appreciate the
-tiny reference to King Arthur originally being a Roman general here. 
-
+Why, yes, I have been listening to a lot of Dashboard Confessional lately. Why do you ask?

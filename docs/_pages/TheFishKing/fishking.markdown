@@ -78,3 +78,12 @@ header:
     </a>
 </div>
 
+<div style="text-align:left">
+    <a href="/TheFishKing/1-8" style="text_decoration:none">
+        <img style="height:100px; text-align:left; margin:1%" src="/assets/TheFishKing/8_thumb.jPEG">
+    </a>
+    <a href="/TheFishKing/last">
+        <font size="5"><b>Quest 1.8</b></font>
+    </a>
+</div>
+
