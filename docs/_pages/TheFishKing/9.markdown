@@ -1,7 +1,7 @@
 ---
 layout: single
 classes: wide
-permalink: /TheFishKing/last
+permalink: /TheFishKing/1-9
 ---
 <div style="text-align:center">
     <a href="/TheFishKing/" style="text-decoration:none; color:inherit">
