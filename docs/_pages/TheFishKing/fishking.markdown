@@ -96,3 +96,12 @@ header:
     </a>
 </div>
 
+<div style="text-align:left">
+    <a href="/TheFishKing/1-10" style="text_decoration:none">
+        <img style="height:100px; text-align:left; margin:1%" src="/assets/TheFishKing/10_thumb.JPEG">
+    </a>
+    <a href="/TheFishKing/last">
+        <font size="5"><b>Quest 1.10</b></font>
+    </a>
+</div>
+
