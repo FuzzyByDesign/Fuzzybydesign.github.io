@@ -73,7 +73,7 @@ header:
     <a href="/TheFishKing/1-7" style="text_decoration:none">
         <img style="height:100px; text-align:left; margin:1%" src="/assets/TheFishKing/7_thumb.jpg">
     </a>
-    <a href="/TheFishKing/last">
+    <a href="/TheFishKing/1-7">
         <font size="5"><b>Quest 1.7</b></font>
     </a>
 </div>
@@ -82,7 +82,7 @@ header:
     <a href="/TheFishKing/1-8" style="text_decoration:none">
         <img style="height:100px; text-align:left; margin:1%" src="/assets/TheFishKing/8_thumb.JPEG">
     </a>
-    <a href="/TheFishKing/last">
+    <a href="/TheFishKing/1-8">
         <font size="5"><b>Quest 1.8</b></font>
     </a>
 </div>
@@ -91,7 +91,7 @@ header:
     <a href="/TheFishKing/1-9" style="text_decoration:none">
         <img style="height:100px; text-align:left; margin:1%" src="/assets/TheFishKing/9_thumb.JPEG">
     </a>
-    <a href="/TheFishKing/last">
+    <a href="/TheFishKing/1-9">
         <font size="5"><b>Quest 1.9</b></font>
     </a>
 </div>
@@ -100,8 +100,17 @@ header:
     <a href="/TheFishKing/1-10" style="text_decoration:none">
         <img style="height:100px; text-align:left; margin:1%" src="/assets/TheFishKing/10_thumb.JPEG">
     </a>
-    <a href="/TheFishKing/last">
+    <a href="/TheFishKing/1-10">
         <font size="5"><b>Quest 1.10</b></font>
+    </a>
+</div>
+
+<div style="text-align:left">
+    <a href="/TheFishKing/1-11" style="text_decoration:none">
+        <img style="height:100px; text-align:left; margin:1%" src="/assets/TheFishKing/11_thumb.PNG">
+    </a>
+    <a href="/TheFishKing/1-11">
+        <font size="5"><b>Quest 1.11</b></font>
     </a>
 </div>
 
