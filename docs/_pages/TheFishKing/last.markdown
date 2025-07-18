@@ -9,7 +9,7 @@ permalink: /TheFishKing/last
     </a>
 </div>
 <div style="text-align:center">
-    <font size="5"><b>Quest 1.12</b></font>
+    <font size="5"><b>Quest 1.14</b></font>
 </div>
 
 <div style="text-align:center">
@@ -19,7 +19,7 @@ permalink: /TheFishKing/last
     <a href="/TheFishKing/titlepage" style="text-decoration:none">
         <img style="height:28px; text-align:left; margin:1%" src="/assets/Misc/first.PNG" alt="First">
     </a>
-    <a href="/TheFishKing/1-11" style="text-decoration:none">
+    <a href="/TheFishKing/1-13" style="text-decoration:none">
         <img style="height:28px; text-align:left; margin-left:1%; margin-right:10%" src="/assets/Misc/prev.PNG" alt="Previous">
     </a>
     <a href="/TheFishKing/" style="text-decoration:none">
@@ -32,8 +32,8 @@ permalink: /TheFishKing/last
 <section class="comic-section">
     {% include comic-viewer.html
       comic_folder="/assets/TheFishKing/"
-      file_extension=".JPEG"
-      frame_prefix="12-"
+      file_extension=".jpeg"
+      frame_prefix="14-"
       total_frames=3
     %}
 </section>
@@ -42,7 +42,7 @@ permalink: /TheFishKing/last
     <a href="/TheFishKing/titlepage" style="text-decoration:none">
         <img style="height:28px; text-align:left; margin:1%" src="/assets/Misc/first.PNG" alt="First">
     </a>
-    <a href="/TheFishKing/1-11" style="text-decoration:none">
+    <a href="/TheFishKing/1-14" style="text-decoration:none">
         <img style="height:28px; text-align:left; margin-left:1%; margin-right:10%" src="/assets/Misc/prev.PNG" alt="Previous">
     </a>
     <a href="/TheFishKing/" style="text-decoration:none">
@@ -53,4 +53,4 @@ permalink: /TheFishKing/last
 </div>
 
 <h3> Author's Notes:</h3>
-I've been playing a lot of Marvel vs. Capcom recently and it's starting to leak into this part of my life...I know it doesn't really make sense in the style and context of this comic but I guess that's one of the pro's of having no viewership. I can do whatever I want and make it as weird as I want and nobody can complain!
+This page was SO much fun to draw and fast too! Just having to draw one big picture (instead of a bunch of smaller ones) and being allowed to be fast, loose, and messy really helped. 
