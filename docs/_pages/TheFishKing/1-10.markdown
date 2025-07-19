@@ -33,7 +33,7 @@ permalink: /TheFishKing/1-10
     </a>
 </div>
 
-<section class="comic-section">
+<section class=“comic-section”>
     {% include comic-viewer.html
       comic_folder="/assets/TheFishKing/"
       file_extension=".JPEG"

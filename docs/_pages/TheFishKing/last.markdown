@@ -32,7 +32,7 @@ permalink: /TheFishKing/last
 <section class="comic-section">
     {% include comic-viewer.html
       comic_folder="/assets/TheFishKing/"
-      file_extension=".jpeg"
+      file_extension=".JPEG"
       frame_prefix="14-"
       total_frames=3
     %}

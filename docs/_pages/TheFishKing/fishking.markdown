@@ -123,22 +123,20 @@ header:
     </a>
 </div>
 
-<div style=“text-align:left”>
-    <a href=“/TheFishKing/1-13” style=“text_decoration:none”>
-        <img style=“height:100px; text-align:left; margin:1%” src=“/assets/TheFishKing/13_thumb.jpeg”>
+<div style="text-align:left">
+    <a href="/TheFishKing/1-13" style="text_decoration:none">
+        <img style="height:100px; text-align:left; margin:1%" src="/assets/TheFishKing/13_thumb.jpeg">
     </a>
-    <a href=“/TheFishKing/1-13”>
-        <font size=“5”><b>Quest 1.13</b></font>
-    </a>
-</div>
-
-
-<div style=“text-align:left”>
-    <a href=“/TheFishKing/1-14” style=“text_decoration:none”>
-        <img style=“height:100px; text-align:left; margin:1%” src=“/assets/TheFishKing/14_thumb.jpeg”>
-    </a>
-    <a href=“/TheFishKing/1-14”>
-        <font size=“5”><b>Quest 1.14</b></font>
+    <a href="/TheFishKing/1-13">
+        <font size="5"><b>Quest 1.13</b></font>
     </a>
 </div>
 
+<div style="text-align:left">
+    <a href="/TheFishKing/1-14" style="text_decoration:none">
+        <img style="height:100px; text-align:left; margin:1%" src="/assets/TheFishKing/14_thumb.jpeg">
+    </a>
+    <a href="/TheFishKing/1-14">
+        <font size="5"><b>Quest 1.14</b></font>
+    </a>
+</div>
