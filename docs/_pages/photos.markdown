@@ -12,8 +12,8 @@ gallery:
   - url: /assets/Photos/IMG_2746.jpg
     image_path: /assets/Photos/IMG_2746.jpg
     title: "Image 1 title caption"
-  - url: /assets/Photos/IMG_5689.jpg
-    image_path: /assets/Photos/IMG_5689.jpg
+  - url: /assets/Photos/IMG_5689.JPG
+    image_path: /assets/Photos/IMG_5689.JPG
     title: "Image 1 title caption"
 ---
 
