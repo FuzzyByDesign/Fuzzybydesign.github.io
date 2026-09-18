@@ -1,4 +1,6 @@
 ---
+title: Photography
+permalink: /photography/
 gallery:
   - url: /assets/Photos/APC_0110.JPG
     image_path: /assets/Photos/APC_0110.JPG
