@@ -71,18 +71,15 @@ gallery:
   - url: /assets/Photos/img179.jpg  
     image_path: /assets/Photos/img179.jpg  
     title: "Hiker in Mt. Rainier NP"
-  - url: /assets/Photos/img313.JPEG
-    image_path: /assets/Photos/img313.JPEG 
+  - url: /assets/Photos/img313.jpg
+    image_path: /assets/Photos/img313.jpg 
     title: "A team taking down a hot air balloon in the Nevada desert"
-  - url: /assets/Photos/img315.JPEG
-    image_path: /assets/Photos/img315.JPEG 
+  - url: /assets/Photos/img315.jpg
+    image_path: /assets/Photos/img315.jpg 
     title: "Bikers riding towards a dust storm in Nevada"
   - url: /assets/Photos/IMG_3877.JPG
     image_path: /assets/Photos/IMG_3877.JPG
     title: "Art installations in Black Rock City"
-  - url: /assets/Photos/IMG_3875.JPG
-    image_path: /assets/Photos/IMG_3875.JPG
-    title: "Art installation during a dust storm in Black Rock City"
 ---
 
 {% include gallery%}
