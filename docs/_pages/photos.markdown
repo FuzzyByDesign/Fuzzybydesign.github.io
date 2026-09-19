@@ -21,8 +21,8 @@ gallery:
   - url: /assets/Photos/IMG_2316.JPG
     image_path: /assets/Photos/IMG_2316.JPG
     title: "Image 1 title caption"
-  - url: /assets/Photos/IMG_3254.JPG
-    image_path: /assets/Photos/IMG_3254.JPG
+  - url: /assets/Photos/IMG_3254.jpg
+    image_path: /assets/Photos/IMG_3254.jpg
     title: "Image 1 title caption"
   - url: /assets/Photos/img171.JPEG
     image_path: /assets/Photos/img171.JPEG 
@@ -39,8 +39,8 @@ gallery:
   - url: /assets/Photos/P1070124.JPG
     image_path: /assets/Photos/P1070124.JPG
     title: "Image 1 title caption"
-  - url: /assets/Photos/P1100323.JPG
-    image_path: /assets/Photos/P1100323.JPG
+  - url: /assets/Photos/P1100323.jpg
+    image_path: /assets/Photos/P1100323.jpg
     title: "Image 1 title caption"
   - url: /assets/Photos/P1060350.JPG
     image_path: /assets/Photos/P1060350.JPG
