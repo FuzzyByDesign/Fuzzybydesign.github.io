@@ -1,5 +1,7 @@
 # main links
 main:
+  - title: "Photography"
+    url: /photography
   - title: "About Me"
     url: /about
   - title: "The Fish King Archives"
