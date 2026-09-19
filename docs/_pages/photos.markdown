@@ -4,7 +4,7 @@ permalink: /photography/
 gallery:
   - url: /assets/Photos/APC_0110.JPG
     image_path: /assets/Photos/APC_0110.JPG
-    title: "A man visits the Atlanta Aquarium"
+    title: "A man in awe at the Atlanta Aquarium"
   - url: /assets/Photos/IMG_4221.JPG
     image_path: /assets/Photos/IMG_4221.JPG
     title: "A sea star at low tide at Fitzgerald Marine Reserve, CA"
@@ -28,7 +28,7 @@ gallery:
     title: "A white-fronted bee eater along the Nile in Queen Elizabeth NP, Uganda"
   - url: /assets/Photos/P1050941.JPG
     image_path: /assets/Photos/P1050941.JPG
-    title: "Injured Cape Buffalo in Murchinson Falls NP, Uganda"
+    title: "Cape Buffalo caught in barbed wire in Murchinson Falls NP, Uganda"
   - url: /assets/Photos/P1060569.JPG
     image_path: /assets/Photos/P1060569.JPG
     title: "Yellow-billed stork along the Nile in Queen Elizabeth NP, Uganda"
@@ -70,7 +70,7 @@ gallery:
     title: "Hiker in Mt. Rainier NP"
   - url: /assets/Photos/img179.jpg  
     image_path: /assets/Photos/img179.jpg  
-    title: "Hiker in Mt Rainier NP"
+    title: "Hiker in Mt. Rainier NP"
 ---
 
 {% include gallery%}
